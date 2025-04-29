@@ -1,0 +1,15 @@
+id: tourist
+key: 9Kf6FO06legHLB8QmmQAJe6vWKC/dlJS0DrbUnYMU61GKHBQMKkB/s9WuHAIy+GE+jiCLN0c8bnJVce0V9vk7c1IiEeksD7/JXl9
+problem_storage_globs:
+  - /problems/*
+
+
+sudo docker run \
+    --name tourist \
+    --network="host" \
+    -v /home/abc/web/problems:/problems \
+    --cap-add=SYS_PTRACE \
+    -d \
+    --restart=always \
+    vnoj/judge-tiervnoj:latest \
+    run -p 9999 -c /problems/tourist.yml localhost -A 0.0.0.0 -a 12341
