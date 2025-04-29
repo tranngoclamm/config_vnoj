@@ -14,7 +14,7 @@ SECRET_KEY = 'diow=&wyt1&@#5j8f92x(f2f763x9-&0to%^xrpghv8y_)dl7k'
 #CHAT_SECRET_KEY = 'Qxf4eZAN6yzshMzvEMwQiES4q87A4FKvXkcfZEBDOJg='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Change to False once you are done with runserver testing.
+DEBUG = False  # Change to False once you are done with runserver testing.
 
 # Uncomment and set to the domain names this site is intended to serve.
 # You must do this once you set DEBUG to False.
@@ -112,7 +112,7 @@ SEND_ACTIVATION_EMAIL = False
 # A tuple of (name, email) pairs that specifies those who will be mailed
 # when the server experiences an error when DEBUG = False.
 ADMINS = (
-    ('Vu Giang', 'giang213205@gmail.com'),
+    ('khoai', 'trungdunght2003@gmail.com'),
 )
 
 # The sender for the aforementioned emails.
@@ -128,7 +128,8 @@ SERVER_EMAIL = 'no.reply.thqn@gmail.com'
 # webserver to serve the static files. This is the directory where all the
 # static files DMOJ uses will be collected to.
 # You must configure your webserver to serve this directory as /static/ in production.
-STATIC_ROOT = '/home/abc/web/static'
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 
 # URL to access static files.
 #STATIC_URL = '/static/'
@@ -152,12 +153,12 @@ TERMS_OF_SERVICE_URL = None  # Use a flatpage.
 # This is the directory where all the media files are stored.
 # Change this to somewhere more permanent.
 # You must configure your webserver to serve this directory in production.
-MEDIA_ROOT = '/home/abc/web/media'
+MEDIA_ROOT = '/home/aaa/site/media'
 
 ## Problem data settings.
 # This is the directory where all the problem data are stored.
 # Change this to somewhere more permanent.
-DMOJ_PROBLEM_DATA_ROOT = '/home/abc/web/problems/'
+DMOJ_PROBLEM_DATA_ROOT = '/home/aaa/site/problems/'
 
 ## Bridge controls.
 # The judge connection address and port; where the judges will connect to the site.
@@ -188,7 +189,9 @@ BAD_MAIL_PROVIDERS = set()
 #EVENT_DAEMON_POST = '<ws:// URL to post to>'
 
 # If you are using the defaults from the guide, it is this:
-EVENT_DAEMON_POST = 'ws://127.0.0.1:15101/'
+EVENT_DAEMON_GET = ('127.0.0.1', 15100)
+EVENT_DAEMON_POST = ('127.0.0.1', 15101)
+EVENT_DAEMON_POLL = ('127.0.0.1', 15102)
 
 # These are the publicly accessed interface configurations.
 # They should match those used by the script.
@@ -198,9 +201,9 @@ EVENT_DAEMON_POST = 'ws://127.0.0.1:15101/'
 # i.e. the path to /channels/ exposed by the daemon, through whatever proxy setup you have.
 
 # Using our standard nginx configuration, these should be:
-EVENT_DAEMON_GET = 'ws://127.0.0.1/event/'
+#EVENT_DAEMON_GET = 'ws://127.0.0.1/event/'
 #EVENT_DAEMON_GET_SSL = 'wss://<your domain>/event/'  # Optional
-EVENT_DAEMON_POLL = '/channels/'
+#EVENT_DAEMON_POLL = '/channels/'
 
 # If you would like to use the AMQP-based event server from <https://github.com/DMOJ/event-server>,
 # uncomment this section instead. This is more involved, and recommended to be done
@@ -247,7 +250,7 @@ TIMEZONE_MAP = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_M
 #DMOJ_PDF_PDFOID_URL = '<URL to your pdfoid install>.'
 
 # Directory to cache the PDF.
-DMOJ_PDF_PROBLEM_CACHE = '/home/abc/web/dmoj-uwsgi/pdfcache'
+DMOJ_PDF_PROBLEM_CACHE = '/home/aaa/site/dmoj-uwsgi/pdfcache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
@@ -259,7 +262,7 @@ DMOJ_USER_DATA_DOWNLOAD = True
 
 # Directory to cache user data downloads.
 # It is the administrator's responsibility to clean up old files.
-DMOJ_USER_DATA_CACHE = '/home/abc/web/dmoj-uwsgi/userdatacache'
+DMOJ_USER_DATA_CACHE = '/home/aaa/site/dmoj-uwsgi/userdatacache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
@@ -273,7 +276,7 @@ DMOJ_CONTEST_DATA_DOWNLOAD = True
 
 # Directory to cache contest data downloads.
 # It is the administrator's responsibility to clean up old files.
-DMOJ_CONTEST_DATA_CACHE = '/home/abc/web/dmoj-uwsgi/contestdatacache'
+DMOJ_CONTEST_DATA_CACHE = '/home/aaa/site/dmoj-uwsgi/contestdatacache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
