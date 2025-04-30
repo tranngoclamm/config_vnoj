@@ -107,11 +107,15 @@ problem_storage_globs:
 
 
 sudo docker run \
-    --name tourist \
+    --name ooo \
     --network="host" \
-    -v /home/abc/web/problems:/problems \
+    -v /home/aaa/site/problems:/problems \
     --cap-add=SYS_PTRACE \
     -d \
     --restart=always \
     vnoj/judge-tiervnoj:latest \
-    run -p 9999 -c /problems/tourist.yml localhost -A 0.0.0.0 -a 12341
+    run -p 9999 -c /problems/ooo.yml localhost -A 0.0.0.0 -a 12341
+
+
+
+VwqTuG8W5W8cywrzszAyghfV7TODJmRNcJ0qzUic8q0rQbYPEzDJH+foDWB89NTFNajmcJAik6d8xL7waNnS3SHCTKOhUAeZc0Ep
