@@ -10,8 +10,12 @@
 # SECURITY WARNING: keep the secret key used in production secret!
 # You may use this command to generate a key:
 # python3 -c 'from django.core.management.utils import get_random_secret_key;print(get_random_secret_key())'
-SECRET_KEY = 'diow=&wyt1&@#5j8f92x(f2f763x9-&0to%^xrpghv8y_)dl7k'
-#CHAT_SECRET_KEY = 'Qxf4eZAN6yzshMzvEMwQiES4q87A4FKvXkcfZEBDOJg='
+SEB_BROWSER_KEYS = [
+    'fe4d80017ad6a4bba05ed9ee56ffd5da2cd3c14b1680e872988390e1bf015723',
+    'aab5ce9ded6cebdfad6df385639009d3a68759a25e256bbb97f88e250931f2cc',
+]
+JUDGE_SERVER_BIND = '0.0.0.0'
+JUDGE_SERVER_PORT = 9999
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # Change to False once you are done with runserver testing.
@@ -88,7 +92,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # The following block is included for your convenience, if you want
 # to use Gmail.
-SEND_ACTIVATION_EMAIL = False
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_USE_TLS = True
 #EMAIL_HOST = 'smtp.gmail.com'
@@ -128,9 +131,8 @@ SERVER_EMAIL = 'no.reply.thqn@gmail.com'
 # webserver to serve the static files. This is the directory where all the
 # static files DMOJ uses will be collected to.
 # You must configure your webserver to serve this directory as /static/ in production.
-import os
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+COMPRESS_ROOT = STATIC_ROOT
 # URL to access static files.
 #STATIC_URL = '/static/'
 
@@ -153,12 +155,12 @@ TERMS_OF_SERVICE_URL = None  # Use a flatpage.
 # This is the directory where all the media files are stored.
 # Change this to somewhere more permanent.
 # You must configure your webserver to serve this directory in production.
-MEDIA_ROOT = '/home/aaa/site/media'
+MEDIA_ROOT = '/home/admin123/web/media'
 
 ## Problem data settings.
 # This is the directory where all the problem data are stored.
 # Change this to somewhere more permanent.
-DMOJ_PROBLEM_DATA_ROOT = '/home/aaa/site/problems/'
+DMOJ_PROBLEM_DATA_ROOT = '/home/admin123/web/OJ/problems/'
 
 ## Bridge controls.
 # The judge connection address and port; where the judges will connect to the site.
@@ -167,7 +169,7 @@ DMOJ_PROBLEM_DATA_ROOT = '/home/aaa/site/problems/'
 BRIDGED_JUDGE_ADDRESS = [('localhost', 9999)]
 
 # The bridged daemon bind address and port to communicate with the site.
-#BRIDGED_DJANGO_ADDRESS = [('localhost', 9998)]
+BRIDGED_DJANGO_ADDRESS = [('localhost', 9998)]
 
 ## DMOJ features.
 # Set to True to enable full-text searching for problems.
@@ -183,21 +185,19 @@ BAD_MAIL_PROVIDERS = set()
 
 ## Event server.
 # Uncomment to enable live updating.
-#EVENT_DAEMON_USE = True
+EVENT_DAEMON_USE = True
 
 # Uncomment this section to use websocket/daemon.js included in the site.
 #EVENT_DAEMON_POST = '<ws:// URL to post to>'
 
 # If you are using the defaults from the guide, it is this:
-EVENT_DAEMON_GET = ('127.0.0.1', 15100)
-EVENT_DAEMON_POST = ('127.0.0.1', 15101)
-EVENT_DAEMON_POLL = ('127.0.0.1', 15102)
+
+EVENT_DAEMON_GET = "ws://127.0.0.1:15100/"
+EVENT_DAEMON_POST = "ws://127.0.0.1:15101/"
+EVENT_DAEMON_POLL = "ws://127.0.0.1:15102/"
 
 # These are the publicly accessed interface configurations.
 # They should match those used by the script.
-#EVENT_DAEMON_GET = '<public ws:// URL for clients>'
-#EVENT_DAEMON_GET_SSL = '<public wss:// URL for clients>'
-#EVENT_DAEMON_POLL = '<public URL to access the HTTP long polling of event server>'
 # i.e. the path to /channels/ exposed by the daemon, through whatever proxy setup you have.
 
 # Using our standard nginx configuration, these should be:
@@ -250,7 +250,7 @@ TIMEZONE_MAP = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_M
 #DMOJ_PDF_PDFOID_URL = '<URL to your pdfoid install>.'
 
 # Directory to cache the PDF.
-DMOJ_PDF_PROBLEM_CACHE = '/home/aaa/site/dmoj-uwsgi/pdfcache'
+DMOJ_PDF_PROBLEM_CACHE = '/home/admin123/web/OJ/dmoj-uwsgi/pdfcache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
@@ -262,7 +262,7 @@ DMOJ_USER_DATA_DOWNLOAD = True
 
 # Directory to cache user data downloads.
 # It is the administrator's responsibility to clean up old files.
-DMOJ_USER_DATA_CACHE = '/home/aaa/site/dmoj-uwsgi/userdatacache'
+DMOJ_USER_DATA_CACHE = '/home/admin123/web/OJ/dmoj-uwsgi/userdatacache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
@@ -276,7 +276,7 @@ DMOJ_CONTEST_DATA_DOWNLOAD = True
 
 # Directory to cache contest data downloads.
 # It is the administrator's responsibility to clean up old files.
-DMOJ_CONTEST_DATA_CACHE = '/home/aaa/site/dmoj-uwsgi/contestdatacache'
+DMOJ_CONTEST_DATA_CACHE = '/home/admin123/web/OJ/dmoj-uwsgi/contestdatacache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
