@@ -35,7 +35,7 @@ sudo make judge-tiervnoj
 
 ---
 
-## 📝 Tạo file cấu hình cho judge
+## 📝 Tạo file cấu hình cho judge (nếu chưa có)
 
 Tạo file `judge1.yml` tại:
 
@@ -67,7 +67,14 @@ sudo docker run \
   run -p 9999 -c /problems/judge1.yml localhost -A 0.0.0.0 -a 12341
 ```
 
-> ⚠️ CHÚ Ý: Thay đổi giá trị `12341` để đảm bảo MỖI JUDGE sử dụng 1 mã KHÁC NHAU
+⚠️ CHÚ Ý:
+- Đảm bảo mỗi Judge có: `--name` và mã `-a` riêng biệt (ví dụ: 12341, 12342, ...)
+- `-v /home/admin123/web/OJ/problems:/problems`  
+  Mount thư mục chứa problems vào container.
+- `-v /home/admin123/judge-server/judge1.yml:/problems/judge1.yml`  
+  Mount file cấu hình Judge vào container.
+- `-c /problems/judge1.yml`  
+  Trỏ đến file cấu hình trong container.
 
 ---
 
@@ -77,3 +84,7 @@ sudo docker run \
 sudo docker ps -a
 sudo docker logs judge1
 ```
+## 🧪 Tạo problem với ID `run_ide` và thêm test data (nếu chưa có)
+
+📝 Đây là một **problem giả** dùng riêng cho **chạy code trực tiếp trong IDE**, sử dụng để nhận input/output từ người dùng.
+
