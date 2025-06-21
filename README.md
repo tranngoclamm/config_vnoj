@@ -1,4 +1,4 @@
-# 📝 1. Cài đặt máy chấm bằng Docker
+# 📝 Hướng dẫn cài đặt máy chấm bằng Docker
 
 ## 📦 Cài đặt Docker và Docker Compose
 
@@ -60,6 +60,7 @@ sudo docker run \
   --network="host" \
   -v /home/admin123/web/OJ/problems:/problems \
   -v /home/admin123/judge-server/judge1.yml:/problems/judge1.yml \
+  -v /home/admin123/judge-server:/judge \
   --cap-add=SYS_PTRACE \
   -d \
   --restart=always \
@@ -73,6 +74,8 @@ sudo docker run \
   Mount thư mục chứa problems vào container.
 - `-v /home/admin123/judge-server/judge1.yml:/problems/judge1.yml`  
   Mount file cấu hình Judge vào container.
+- `-v /home/admin123/judge-server:/judge`  
+  Mount mã nguồn vào container (⚠ Bắt buộc để khắc phục lỗi không nhận file input_ide ở docker).
 - `-c /problems/judge1.yml`  
   Trỏ đến file cấu hình trong container.
 
